@@ -25,7 +25,7 @@ export default function Index() {
     return fetchMovies({ query: "", type: category });
   }, [category]);
 
-  const { data: items, loading, error } = useFetch(fetchData, true, [category]);
+  const { data: items, loading, error, refetch } = useFetch(fetchData, true, [category]);
 
   useEffect(() => {
     if (items && items.length > 0) {
@@ -156,8 +156,24 @@ export default function Index() {
 
   if (error) {
     return (
-      <View className="flex-1 bg-black items-center justify-center">
-        <Text className="text-red-500">{error.message}</Text>
+      <View style={{ flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+        <Text style={{ color: '#F87171', fontSize: 20, marginBottom: 8 }}>
+          Something went wrong
+        </Text>
+        <Text style={{ color: '#9CA3AF', marginBottom: 24, textAlign: 'center' }}>
+          {error.message}
+        </Text>
+        <TouchableOpacity 
+          style={{ 
+            backgroundColor: 'white', 
+            borderRadius: 8, 
+            paddingVertical: 12, 
+            paddingHorizontal: 24 
+          }}
+          onPress={refetch}
+        >
+          <Text style={{ color: 'black', fontWeight: 'bold' }}>Try Again</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -182,6 +198,9 @@ export default function Index() {
           }}
           renderItem={({ item }) => (
             <MovieCard
+            original_language={item.original_language}
+                          vote_average={item.vote_average}
+              release_date={item.release_date}
               id={item.id}
               poster_path={item.poster_path}
               title={item.title || item.name} // TV shows may use `name` instead of `title`
