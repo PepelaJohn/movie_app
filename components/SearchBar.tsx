@@ -9,7 +9,7 @@ type Props = {
 
 const SearchBar = ({onPress, placeholder}:Props) => {
   return (
-    <View style={styles.container} className='w-full gap-2 flex-row items-center justify-between   py-4  rounded-full px-4'>
+    <View style={styles.container} className='w-full gap-2 flex-row items-center justify-between   rounded-full px-4'>
         <Image className='bg-transparent' source={icons.search}/>
         <TextInput 
         onChangeText={() => {}}
@@ -30,11 +30,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#252525',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop:8,
-        paddingBottom:8,
         borderRadius: 50,
         marginTop:15,
-        marginLeft: 10,
-        marginRight: 10,
+        
     },
 })
