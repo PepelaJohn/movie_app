@@ -4,8 +4,10 @@ export default function RootLayout() {
   return <Stack >
     <Stack.Screen
       name="(tabs)"
+      
       options={{
         headerShown: false,
+        // statusBarBackgroundColor: "#0f0d23",
       }}
     />
      
